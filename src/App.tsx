@@ -1,9 +1,11 @@
-function App() {
+import { Header } from './components/Header';
+import { ProductList } from './components/ProductList';
+
+export function App() {
   return (
-    <div>
-      batata
-    </div>
+    <>
+      <Header />
+      <ProductList />
+    </>
   );
 }
-
-export default App;
