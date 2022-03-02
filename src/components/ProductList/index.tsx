@@ -3,15 +3,11 @@ import { ProductListItem } from '../ProductListItem';
 import { IProduct } from '../../models/Product';
 
 import { calculateSubtotal } from '../../utils/calculateSubtotal';
+import { useProductContext } from '../../hooks/useProductContext';
 
-interface ProductListProps {
-  products: IProduct[];
-  setProducts: (value: () => IProduct[]) => void;
-}
+export function ProductList() {
+  const { products, setProducts } = useProductContext();
 
-export function ProductList({
-  products, setProducts
-}: ProductListProps) {
   const newProduct = (product: IProduct, newQuantity: number) => ({
     ...product,
     quantity: newQuantity,
