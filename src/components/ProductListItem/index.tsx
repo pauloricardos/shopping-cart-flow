@@ -2,14 +2,14 @@ import { IProduct } from '../../models/Product';
 
 interface ProductListItemProps {
   product: IProduct,
-  handleAddProductQuantity: (productId: number) => void;
-  handleRemoveProductQuantity: (productId: number) => void;
+  handleAddProduct: (productId: number) => void;
+  handleRemoveProduct: (productId: number) => void;
 }
 
 export function ProductListItem({
   product,
-  handleAddProductQuantity,
-  handleRemoveProductQuantity
+  handleAddProduct,
+  handleRemoveProduct
   }: ProductListItemProps
 ) {
   return (
@@ -26,10 +26,17 @@ export function ProductListItem({
       <li>
         Subtotal: {product.subtotal}
       </li>
-      <button type="button" onClick={() => handleAddProductQuantity(product.id)}>
+      <button
+        type="button"
+        onClick={() => handleAddProduct(product.id)}
+      >
         Add to cart
       </button>
-      <button type="button" onClick={() => handleRemoveProductQuantity(product.id)}>
+      <button
+        type="button"
+        onClick={() => handleRemoveProduct(product.id)}
+        disabled={product.quantity === 0}
+      >
         Remove
       </button>
     </>
