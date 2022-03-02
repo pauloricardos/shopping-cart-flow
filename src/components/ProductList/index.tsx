@@ -12,40 +12,38 @@ interface ProductListProps {
 export function ProductList({
   products, setProducts
 }: ProductListProps) {
-  const handleAddProductQuantity = (productId: number) => setProducts(() => {
-    const updatedProducts = products.map((product: IProduct) => {
+  const newProduct = (product: IProduct, newQuantity: number) => ({
+    ...product,
+    quantity: newQuantity,
+    subtotal: calculateSubtotal(product.price, newQuantity),
+  });
+
+  const handleAddProduct = (productId: number) => setProducts(() => {
+    const newProducts = products.map((product: IProduct) => {
       if (product.id === productId) {
         const newQuantity: number = product.quantity + 1;
 
-        return {
-          ...product,
-          quantity: newQuantity,
-          subtotal: calculateSubtotal(product.price, newQuantity),
-        }
+        return newProduct(product, newQuantity);
       } else {
         return product;
       }
     });
 
-    return updatedProducts;
+    return newProducts;
   });
 
-  const handleRemoveProductQuantity = (productId: number) => setProducts(() => {
-    const updatedProducts = products.map((product: IProduct) => {
+  const handleRemoveProduct = (productId: number) => setProducts(() => {
+    const newProducts = products.map((product: IProduct) => {
       if (product.id === productId) {
         const newQuantity: number = product.quantity - 1;
 
-        return {
-          ...product,
-          quantity: newQuantity,
-          subtotal: calculateSubtotal(product.price, newQuantity),
-        }
+        return newProduct(product, newQuantity);
       } else {
         return product;
       }
     });
 
-    return updatedProducts;
+    return newProducts;
   });
 
   return (
@@ -54,8 +52,8 @@ export function ProductList({
         <ul key={product.id}>
           <ProductListItem
             product={product}
-            handleAddProductQuantity={handleAddProductQuantity}
-            handleRemoveProductQuantity={handleRemoveProductQuantity}
+            handleAddProduct={handleAddProduct}
+            handleRemoveProduct={handleRemoveProduct}
           />
         </ul>
       ))}
