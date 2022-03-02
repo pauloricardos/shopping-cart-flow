@@ -1,13 +1,12 @@
 import { currencyFormatter } from '../../utils/currencyFormatter';
 
+import { useProductContext } from '../../hooks/useProductContext';
+
 import { Container } from './styles';
 
-interface HeaderProps {
-  totalProductsPrice: number;
-  totalProducts: number;
-}
+export function Header() {
+  const { totalProducts, totalProductsPrice } = useProductContext();
 
-export function Header({ totalProductsPrice, totalProducts }: HeaderProps) {
   return (
     <Container>
       <h1>
