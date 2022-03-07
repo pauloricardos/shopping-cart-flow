@@ -2,8 +2,8 @@ import { IProduct } from '../../models/Product';
 
 interface ProductListItemProps {
   product: IProduct,
-  handleAddProduct: (productId: number) => void;
-  handleRemoveProduct: (productId: number) => void;
+  handleAddProduct: (product: IProduct) => void;
+  handleRemoveProduct: (product: IProduct) => void;
 }
 
 export function ProductListItem({
@@ -28,13 +28,13 @@ export function ProductListItem({
       </li>
       <button
         type="button"
-        onClick={() => handleAddProduct(product.id)}
+        onClick={() => handleAddProduct(product)}
       >
         Add to cart
       </button>
       <button
         type="button"
-        onClick={() => handleRemoveProduct(product.id)}
+        onClick={() => handleRemoveProduct(product)}
         disabled={product.quantity === 0}
       >
         Remove
