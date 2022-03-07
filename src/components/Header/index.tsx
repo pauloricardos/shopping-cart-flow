@@ -5,7 +5,7 @@ import { useProductContext } from '../../hooks/useProductContext';
 import { Container } from './styles';
 
 export function Header() {
-  const { totalProducts, totalProductsPrice } = useProductContext();
+  const { state: { totalProducts, totalProductsPrice } } = useProductContext();
 
   return (
     <Container>
