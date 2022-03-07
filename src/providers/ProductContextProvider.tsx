@@ -1,38 +1,29 @@
-import { createContext, useState, ReactNode } from 'react';
+import { createContext, Dispatch, ReactNode, useReducer } from 'react';
 
-import { IProduct } from '../models/Product';
+import { productsReducer, InitialState } from '../store/reducers';
+import { Action } from '../store/actions';
 import { productListMock } from '../__mocks__/productList';
-import { sum } from '../utils/sum';
 
 interface ProductContextProviderProps {
   children: ReactNode;
 }
 
-interface ProductContextValue {
-  products: IProduct[];
-  setProducts: (value: () => IProduct[]) => void;
-  totalProductsPrice: number;
-  totalProducts: number,
+const initialState = {
+  products: productListMock,
+  totalProducts: 0,
+  totalProductsPrice: 0,
 }
 
-export const ProductContext = createContext<ProductContextValue | undefined>(undefined);
+export const ProductContext = createContext<{
+  state: InitialState;
+  dispatch: Dispatch<Action>
+}>({ state: initialState, dispatch: () => null, });
 
 export const ProductContextProvider = ({ children }: ProductContextProviderProps) => {
-  const [products, setProducts] = useState<IProduct[]>(productListMock);
-
-  const totalProductsPrice = sum(products.map(product => product.subtotal));
-
-  const totalProducts = sum(products.map(product => product.quantity));
-
-  const state = {
-    products,
-    setProducts,
-    totalProductsPrice,
-    totalProducts,
-  }
+  const [state, dispatch] = useReducer(productsReducer, initialState);
 
   return (
-    <ProductContext.Provider value={state}>
+    <ProductContext.Provider value={{ state, dispatch }}>
       {children}
     </ProductContext.Provider>
   )
