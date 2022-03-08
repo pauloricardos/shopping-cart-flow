@@ -14,12 +14,10 @@ export function ProductList() {
     subtotal: calculateSubtotal(product.price, newQuantity),
   });
 
-  const handleAddProduct = (productId: number) => setProducts(() => {
+  const handleAddProduct = (productId: number, productQuantity: number) => setProducts(() => {
     const newProducts = products.map((product: IProduct) => {
       if (product.id === productId) {
-        const newQuantity: number = product.quantity + 1;
-
-        return newProduct(product, newQuantity);
+        return newProduct(product, productQuantity);
       } else {
         return product;
       }
@@ -28,12 +26,10 @@ export function ProductList() {
     return newProducts;
   });
 
-  const handleRemoveProduct = (productId: number) => setProducts(() => {
+  const handleRemoveProduct = (productId: number, productQuantity: number) => setProducts(() => {
     const newProducts = products.map((product: IProduct) => {
       if (product.id === productId) {
-        const newQuantity: number = product.quantity - 1;
-
-        return newProduct(product, newQuantity);
+        return newProduct(product, productQuantity);
       } else {
         return product;
       }
