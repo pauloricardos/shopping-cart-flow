@@ -9,9 +9,15 @@ We want to create a new ecommerce website. At the beginning of the ecommerce web
 
 We have three ways to solve this challenge:
 
-- Conventional way: State and Props
-- Context API + useContext
-- Context API + useContext + useReducer (not recommended)
+### Conventional way: State and Props
+Easy but not very efficient. When project start scaling, more complex to understand where the data came from, refactoring and props drilling.
+
+### Recommended way: Context API + useContext
+Easy to understand where the data came from, solve the props drilling bad pattern, easy to refactor and scales very well.
+
+
+### Not recommended way: Context API + useContext + useReducer
+Apply the Flux Pattern, used by Redux and MobX libraries, using only React. Not recommended because forces the encapsulated components to rerender when does not need.
 ## Available Scripts
 
 In the project directory, you can run:
