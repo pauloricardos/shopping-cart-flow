@@ -1,7 +1,17 @@
-# Getting Started with Create React App
+# Challenge
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+We want to create a new ecommerce website. At the beginning of the ecommerce website, we need these features:
+- A Header containing total products in cart;
+- A list of products containing name, price, quantity and subtotal;
+- Buttons that once clicked, add or remove product from the cart and recalculate the selected product subtotal based on price and quantity, also recalculate the total products present on Header.
 
+## Steps
+
+We have three ways to solve this challenge:
+
+- Conventional way: State and Props
+- Context API + useContext
+- Context API + useContext + useReducer (not recommended)
 ## Available Scripts
 
 In the project directory, you can run:
@@ -39,8 +49,3 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
